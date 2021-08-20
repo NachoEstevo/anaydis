@@ -1,26 +1,23 @@
 package anaydis.sort;
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 
 public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     private List<Integer> integerList;
 
     public IntegerDataSetGenerator(){
-        integerList = new ArrayList<>();
+        integerList = integerListInit();
     }
     @Override
     public @NotNull List<Integer> createAscending(int length) {
-        List<Integer>  auxList = integerListInit();
-        for (int i = 0; i < length; i++) {
-            integerList.add(auxList.get(i));
-        }
-        return integerList;
+        return new ArrayList<>(integerList.subList(0, length));
     }
 
     @Override
     public @NotNull List<Integer> createDescending(int length) {
+        integerList = integerListInit();
+        integerList = new ArrayList<>(integerList.subList(0, length));
         Collections.sort(createRandom(length));
         integerList = reverseArrayList(integerList);
         return integerList;
@@ -28,10 +25,11 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
 
     @Override
     public @NotNull List<Integer> createRandom(int length) {
+        integerList = new ArrayList<>();
         List<Integer>  auxList = integerListInit();
+
         for (int i = 0; i < length; i++) {
             integerList.add(auxList.get((int) (Math.random()* auxList.size())));
-            System.out.println(integerList.size());
         }
         return integerList;
     }
