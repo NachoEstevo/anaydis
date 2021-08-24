@@ -7,9 +7,13 @@ public class SorterProviderImpl implements SorterProvider{
 
     private final Map<SorterType, Sorter> sorters = new EnumMap<>(SorterType.class);
 
-    public SorterProviderImpl(){
+    public SorterProviderImpl(){ //Fix this using the methods implemented below
         final SelectionSorter selection = new SelectionSorter();
         sorters.put(selection.getType(),selection);
+        final BubbleSorter bubble = new BubbleSorter();
+        sorters.put(bubble.getType(),bubble);
+        final InsertionSorter insertion = new InsertionSorter();
+        sorters.put(insertion.getType(),insertion);
     }
     @Override
     public @NotNull Iterable<Sorter> getAllSorters(){

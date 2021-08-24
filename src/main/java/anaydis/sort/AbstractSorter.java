@@ -22,8 +22,8 @@ abstract class AbstractSorter implements Sorter {
 
     public  <T> boolean greater(Comparator<T> comparator, List<T> list, int i, int j) {
         return comparator.compare(list.get(i),list.get(j)) > 0;
-
     }
+
     @Override
     public final @NotNull SorterType getType(){
         return type;

@@ -15,7 +15,7 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     }
 
     @Override
-    public @NotNull List<Integer> createDescending(int length) {
+    public @NotNull List<Integer> createDescending(int length) { //Slowest, as we sort it and then reverse it.
         integerList = integerListInit();
         integerList = new ArrayList<>(integerList.subList(0, length));
         Collections.sort(createRandom(length));
@@ -26,10 +26,9 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     @Override
     public @NotNull List<Integer> createRandom(int length) {
         integerList = new ArrayList<>();
-        List<Integer>  auxList = integerListInit();
 
         for (int i = 0; i < length; i++) {
-            integerList.add(auxList.get((int) (Math.random()* auxList.size())));
+            integerList.add((int) (Math.random() * 1000));
         }
         return integerList;
     }
