@@ -10,6 +10,7 @@ abstract class SorterTest extends AbstractSorterTest {
     @Override protected DataSetGenerator<String> createStringDataSetGenerator() {
         return new StringDataSetGenerator();
     }
+  //protected DataSetGenerator<FullName> createFullNameDataSetGenerator() {return new FullNameGenerator();}
 
     @Override protected DataSetGenerator<Integer> createIntegerDataSetGenerator() {
         return new IntegerDataSetGenerator();

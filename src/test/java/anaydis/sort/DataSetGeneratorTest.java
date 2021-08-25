@@ -11,13 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class DataSetGeneratorTest {
 
-    private DataSetGenerator<String> createStringDataSetGenerator() {
-        return new StringDataSetGenerator();
-    }
+    private DataSetGenerator<String> createStringDataSetGenerator() {return new StringDataSetGenerator();}
 
-    private DataSetGenerator<Integer> createIntegerDataSetGenerator() {
-        return new IntegerDataSetGenerator();
-    }
+    private DataSetGenerator<Integer> createIntegerDataSetGenerator() {return new IntegerDataSetGenerator();}
+
+    //private DataSetGenerator<FullName> createFullNameDataSetGenerator(){return new FullNameGenerator();}
 
     /** Test create ascending size and sort. */
     @Test public void testCreateAscendingForStringGenerator() {
@@ -25,12 +23,24 @@ public class DataSetGeneratorTest {
         testGeneratorCreateAscending(stringDataSetGenerator, 10);
         testGeneratorCreateAscending(stringDataSetGenerator, 70);
     }
+    /** Test create ascending size and sort. */
+    @Test public void testCreateAscendingForFullNameGenerator() {
+        //final DataSetGenerator<FullName> fullNameDataSetGenerator = createFullNameDataSetGenerator();
+        //testGeneratorCreateAscending(fullNameDataSetGenerator, 10);
+       // testGeneratorCreateAscending(fullNameDataSetGenerator, 70);
+    }
 
     /** Test create ascending size and sort. */
     @Test public void testCreateAscendingForIntegerGenerator() {
         final DataSetGenerator<Integer> integerDataSetGenerator = createIntegerDataSetGenerator();
         testGeneratorCreateAscending(integerDataSetGenerator, 10);
         testGeneratorCreateAscending(integerDataSetGenerator, 70);
+    }
+    /** Test create descending size and sort. */
+    @Test public void testCreateDescendingForFullNameGenerator() {
+        //final DataSetGenerator<FullName> fullNameDataSetGenerator = createFullNameDataSetGenerator();
+        //testGeneratorCreateDescending(fullNameDataSetGenerator, 10);
+        //testGeneratorCreateDescending(fullNameDataSetGenerator, 70);
     }
 
     /** Test create descending size and sort. */
@@ -52,6 +62,12 @@ public class DataSetGeneratorTest {
         final DataSetGenerator<String> stringDataSetGenerator = createStringDataSetGenerator();
         testGeneratorCreateRandom(stringDataSetGenerator, 10);
         testGeneratorCreateRandom(stringDataSetGenerator, 70);
+    }
+    /** Test create random size. */
+    @Test public void testCreateRandomForFullNameGenerator() {
+        //final DataSetGenerator<FullName> fullNameDataSetGenerator = createFullNameDataSetGenerator();
+       // testGeneratorCreateRandom(fullNameDataSetGenerator, 10);
+        //testGeneratorCreateRandom(fullNameDataSetGenerator, 70);
     }
 
     /** Test create random size. */

@@ -28,6 +28,30 @@ public class TestPractice02 extends SorterTest {
         testSorter(createStringDataSetGenerator(), SorterType.INSERTION, 100);
     }
 
+    /** Test InsertionSorter with FullName generator. */
+    /*
+    @Test public void testInsertionWithFullNameGenerator() {
+        testSorter(createFullNameDataSetGenerator(), SorterType.INSERTION, 10);
+        testSorter(createFullNameDataSetGenerator(), SorterType.INSERTION, 50);
+        testSorter(createFullNameDataSetGenerator(), SorterType.INSERTION, 100);
+    }
+    */
+
+    /** Test SelectionSorter with FullName generator. */
+    /*
+    @Test public void testInsertionWithFullNameGenerator() {
+        testSorter(createFullNameDataSetGenerator(), SorterType.SELECTION, 10);
+        testSorter(createFullNameDataSetGenerator(), SorterType.SELECTION, 50);
+        testSorter(createFullNameDataSetGenerator(), SorterType.SELECTION, 100);
+    }*/
+    /** Test BubbleSorter with FullName generator. */
+    /*
+    @Test public void testInsertionWithFullNameGenerator() {
+        testSorter(createFullNameDataSetGenerator(), SorterType.BUBBLE, 10);
+        testSorter(createFullNameDataSetGenerator(), SorterType.BUBBLE, 50);
+        testSorter(createFullNameDataSetGenerator(), SorterType.BUBBLE, 100);
+    }*/
+
     /** Test InsertionSorter with Integer generator. */
     @Test public void testInsertionWithIntegerGenerator() {
         testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 10);

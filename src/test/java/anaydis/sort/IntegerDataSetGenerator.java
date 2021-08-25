@@ -11,12 +11,19 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     }
     @Override
     public @NotNull List<Integer> createAscending(int length) {
+        if (length > integerList.size()) { //This can be solved with a slower solution using the random generator.
+            throw new IllegalArgumentException("Watch out! IntegerGenerator can generate up to " + integerList.size() + " values only.");
+        }
         return new ArrayList<>(integerList.subList(0, length));
     }
 
     @Override
     public @NotNull List<Integer> createDescending(int length) { //Slowest, as we sort it and then reverse it.
+
         integerList = integerListInit();
+        if (length > integerList.size()) {
+            throw new IllegalArgumentException("Watch out! IntegerGenerator can generate up to " + integerList.size() + " values only.");
+        }
         integerList = new ArrayList<>(integerList.subList(0, length));
         Collections.sort(createRandom(length));
         integerList = reverseArrayList(integerList);
