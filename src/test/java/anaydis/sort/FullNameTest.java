@@ -89,7 +89,7 @@ public class FullNameTest {
         FullName[] ascendingGenerated = generator.createAscending(3).toArray(new FullName[0]);
         FullName[] descendingGenerated = generator.createDescending(3).toArray(new FullName[0]);
 
-        Assert.assertEquals(ascendingTest,ascendingGenerated);
-        Assert.assertEquals(descendingGenerated,descendingTest);
+        Assert.assertArrayEquals(ascendingTest,ascendingGenerated);
+        Assert.assertArrayEquals(descendingGenerated,descendingTest);
     }
 }
