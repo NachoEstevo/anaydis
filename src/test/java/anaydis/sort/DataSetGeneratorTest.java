@@ -15,7 +15,7 @@ public class DataSetGeneratorTest {
 
     private DataSetGenerator<Integer> createIntegerDataSetGenerator() {return new IntegerDataSetGenerator();}
 
-    //private DataSetGenerator<FullName> createFullNameDataSetGenerator(){return new FullNameGenerator();}
+    private DataSetGenerator<FullName> createFullNameDataSetGenerator(){return (DataSetGenerator<FullName>) new FullNameGenerator();}
 
     /** Test create ascending size and sort. */
     @Test public void testCreateAscendingForStringGenerator() {
@@ -64,11 +64,11 @@ public class DataSetGeneratorTest {
         testGeneratorCreateRandom(stringDataSetGenerator, 70);
     }
     /** Test create random size. */
-    @Test public void testCreateRandomForFullNameGenerator() {
-        //final DataSetGenerator<FullName> fullNameDataSetGenerator = createFullNameDataSetGenerator();
-       // testGeneratorCreateRandom(fullNameDataSetGenerator, 10);
-        //testGeneratorCreateRandom(fullNameDataSetGenerator, 70);
-    }
+   /* @Test public void testCreateRandomForFullNameGenerator() {
+        final DataSetGenerator<FullName> fullNameDataSetGenerator = createFullNameDataSetGenerator();
+        testGeneratorCreateRandom(fullNameDataSetGenerator, 10);
+        testGeneratorCreateRandom(fullNameDataSetGenerator, 70);
+    }*/
 
     /** Test create random size. */
     @Test public void testCreateRandomForIntegerGenerator() {

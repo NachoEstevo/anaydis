@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class FullNameGenerator  {//implements DataSetGenerator<FullName>
+public class FullNameGenerator  implements DataSetGenerator<FullName>{
 
     private final List<FullName> fullNames;
 
@@ -40,20 +40,15 @@ public class FullNameGenerator  {//implements DataSetGenerator<FullName>
         Collections.shuffle(copy);
         return copy;
     }
-/*
+
     public @NotNull Comparator<FullName> getComparator() {
-        return FullNameCompare();
+        return new FullName("LEO","MESSI").lastNameComparator;
     }
-
-    private Comparator<FullName> FullNameCompare() {
-
-    }*/
-
-
 
     public int compareFirstName(FullName f1, FullName f2) {
         return f1.getFirstname().compareTo(f2.getFirstname());
     }
+
     public int compareLastName(FullName f1, FullName f2) {
         return f1.getLastname().compareTo(f2.getLastname());
     }
