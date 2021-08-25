@@ -30,8 +30,8 @@ public class FullNameTest {
        sorted.add(new FullName("AMANDA", "ALEXANDER"));
        sorted.add(new FullName("AMY", "ALEXANDER"));
 
-        sorter.sort(comparator,descendingTest);
-        Assert.assertEquals(sorted,descendingTest);
+       sorter.sort(comparator,descendingTest);
+       Assert.assertEquals(sorted,descendingTest);
 
     }
     @Test
