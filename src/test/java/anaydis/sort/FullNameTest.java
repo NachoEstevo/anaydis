@@ -24,7 +24,10 @@ public class FullNameTest {
        descendingTest.add(name2);
        descendingTest.add(name3);
 
-       List<FullName> sorted = List.of(new FullName("ALICE", "ADAMS"),new FullName("AMANDA", "ALEXANDER"),new FullName("AMY", "ALEXANDER"));
+       List<FullName> sorted = new ArrayList<>();
+       sorted.add(new FullName("ALICE", "ADAMS"));
+       sorted.add(new FullName("AMANDA", "ALEXANDER"));
+       sorted.add(new FullName("AMY", "ALEXANDER"));
 
         sorter.sort(comparator,descendingTest);
         Assert.assertEquals(sorted,descendingTest);
