@@ -11,22 +11,21 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     }
     @Override
     public @NotNull List<Integer> createAscending(int length) {
-        if (length > integerList.size()) { //This can be solved with a slower solution using the random generator.
-            throw new IllegalArgumentException("Watch out! IntegerGenerator can generate up to " + integerList.size() + " values only.");
+      integerList = new ArrayList<>();
+
+        for (int i = 0; i < length; i++) {
+            integerList.add(i);
         }
-        return new ArrayList<>(integerList.subList(0, length));
+        return integerList;
     }
 
     @Override
     public @NotNull List<Integer> createDescending(int length) { //Slowest, as we sort it and then reverse it.
+        integerList = new ArrayList<>();
 
-        integerList = integerListInit();
-        if (length > integerList.size()) {
-            throw new IllegalArgumentException("Watch out! IntegerGenerator can generate up to " + integerList.size() + " values only.");
+        for (int i = length; i > 0; i--) {
+            integerList.add(i);
         }
-        integerList = new ArrayList<>(integerList.subList(0, length));
-        Collections.sort(createRandom(length));
-        integerList = reverseArrayList(integerList);
         return integerList;
     }
 
@@ -38,14 +37,6 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
             integerList.add((int) (Math.random() * 1000));
         }
         return integerList;
-    }
-
-    private List<Integer> reverseArrayList(List<Integer> alist){
-        ArrayList<Integer> revArrayList = new ArrayList<>();
-        for (int i = alist.size() - 1; i >= 0; i--) {
-            revArrayList.add(alist.get(i));
-        }
-        return revArrayList;
     }
 
     @Override
