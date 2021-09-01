@@ -18,6 +18,8 @@ public class SorterProviderImpl implements SorterProvider{
         sorters.put(quickSorter.getType(),quickSorter);
         final ShellSorter shellSorter = new ShellSorter();
         sorters.put(shellSorter.getType(),shellSorter);
+        final HSorter hsorter = new HSorter();
+        sorters.put(hsorter.getType(),hsorter);
     }
     @Override
     public @NotNull Iterable<Sorter> getAllSorters(){
