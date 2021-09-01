@@ -74,33 +74,33 @@ public class TestPractice02 extends SorterTest {
     }
 
     /** Test ShellSorter with Integer generator. */
-    /*
+
     @Test public void testShellWithIntegerGenerator() {
         testSorter(createIntegerDataSetGenerator(), SorterType.SHELL, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.SHELL, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.SHELL, 100);
-    }*/
+    }
 
     /** Test ShellSorter with String generator. */
-    /*
+
     @Test public void testShellWithStringGenerator() {
         testSorter(createStringDataSetGenerator(), SorterType.SHELL, 10);
         testSorter(createStringDataSetGenerator(), SorterType.SHELL, 50);
         testSorter(createStringDataSetGenerator(), SorterType.SHELL, 100);
     }
     /** Test QuickSorter with Integer generator. */
-    /*
+
     @Test public void testQuickWithIntegerGenerator() {
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK, 100);
-    }*/
+    }
 
     /** Test QuickSorter with String generator. */
-    /*
+
     @Test public void testQuickWithStringGenerator() {
         testSorter(createStringDataSetGenerator(), SorterType.QUICK, 10);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK, 50);
-    testSorter(createStringDataSetGenerator(), SorterType.QUICK, 100);
-    }*/
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK, 100);
+    }
 }

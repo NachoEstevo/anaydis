@@ -14,6 +14,10 @@ public class SorterProviderImpl implements SorterProvider{
         sorters.put(bubble.getType(),bubble);
         final InsertionSorter insertion = new InsertionSorter();
         sorters.put(insertion.getType(),insertion);
+        final QuickSorter quickSorter = new QuickSorter();
+        sorters.put(quickSorter.getType(),quickSorter);
+        final ShellSorter shellSorter = new ShellSorter();
+        sorters.put(shellSorter.getType(),shellSorter);
     }
     @Override
     public @NotNull Iterable<Sorter> getAllSorters(){
