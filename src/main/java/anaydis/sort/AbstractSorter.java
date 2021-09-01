@@ -28,7 +28,7 @@ abstract class AbstractSorter implements ObservableSorter {
     public  <T> boolean greater(Comparator<T> comparator, List<T> list, int i, int j) {
         return comparator.compare(list.get(i),list.get(j)) > 0;
     }
-    public <T> boolean greater(T item1, T item2,Comparator<T> comparator){
+    public <T> boolean greater(T item1, T item2,Comparator<T> comparator){//Inefficient
         if (item1.equals(item2)){
             for (int i = 0; i< listeners.size(); i++){
                 listeners.get(i).equals(i,i-2);

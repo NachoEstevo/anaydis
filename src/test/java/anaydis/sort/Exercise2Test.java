@@ -1,11 +1,7 @@
 package anaydis.sort;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Exercise2Test {
 
@@ -19,60 +15,31 @@ public class Exercise2Test {
 
         public static void main(String[] args) throws IOException {
             Exercise2Test sorterTest = new Exercise2Test();
-            sorterTest.Ascending(SorterType.SELECTION , 10 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.SELECTION, 10 , "BenchMark.csv");
-            sorterTest.Random(SorterType.SELECTION , 10 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.INSERTION , 10 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.INSERTION, 10 , "BenchMark.csv");
-            sorterTest.Random(SorterType.INSERTION , 10 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.BUBBLE , 10 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.BUBBLE, 10 , "BenchMark.csv");
-            sorterTest.Random(SorterType.BUBBLE , 10 , "BenchMark.csv");
+            ArrayList<SorterType> types = new ArrayList<>();
+            types.add(SorterType.SELECTION);
+            types.add(SorterType.INSERTION);
+            types.add(SorterType.BUBBLE);
+            types.add(SorterType.QUICK);
+            types.add(SorterType.SHELL);
 
-            sorterTest.Ascending(SorterType.SELECTION , 50 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.SELECTION, 50 , "BenchMark.csv");
-            sorterTest.Random(SorterType.SELECTION , 50 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.INSERTION , 50 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.INSERTION, 50 , "BenchMark.csv");
-            sorterTest.Random(SorterType.INSERTION , 50 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.BUBBLE , 50 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.BUBBLE, 50 , "BenchMark.csv");
-            sorterTest.Random(SorterType.BUBBLE , 50 , "BenchMark.csv");
+            ArrayList<Integer> sizes = new ArrayList<>();
+            sizes.add(10);
+            sizes.add(50);
+            sizes.add(500);
+            sizes.add(1000);
+            sizes.add(5000);
 
-            sorterTest.Ascending(SorterType.SELECTION , 500 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.SELECTION, 500 , "BenchMark.csv");
-            sorterTest.Random(SorterType.SELECTION , 500 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.INSERTION , 500 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.INSERTION, 500 , "BenchMark.csv");
-            sorterTest.Random(SorterType.INSERTION , 500 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.BUBBLE , 500 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.BUBBLE, 500 , "BenchMark.csv");
-            sorterTest.Random(SorterType.BUBBLE , 500 , "BenchMark.csv");
-
-            sorterTest.Ascending(SorterType.SELECTION , 1000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.SELECTION, 1000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.SELECTION , 1000 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.INSERTION , 1000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.INSERTION, 1000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.INSERTION , 1000 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.BUBBLE , 1000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.BUBBLE, 1000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.BUBBLE , 1000 , "BenchMark.csv");
-
-            sorterTest.Ascending(SorterType.SELECTION , 5000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.SELECTION, 5000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.SELECTION , 5000 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.INSERTION , 5000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.INSERTION, 5000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.INSERTION , 5000 , "BenchMark.csv");
-            sorterTest.Ascending(SorterType.BUBBLE , 5000 , "BenchMark.csv");
-            sorterTest.Descending(SorterType.BUBBLE, 5000 , "BenchMark.csv");
-            sorterTest.Random(SorterType.BUBBLE , 5000 , "BenchMark.csv");
+            for (SorterType type: types) {
+                for (int size: sizes) {
+                    sorterTest.Ascending(type,size);
+                    sorterTest.Descending(type,size);
+                    sorterTest.Random(type,size);
+                }
+            }
         }
 
-
 //Can I fix this? Put it all in one method. Temporary solution
-    public void Ascending(SorterType type, int length, String path) throws IOException{
+    private void Ascending(SorterType type, int length) throws IOException{
         SorterProviderImpl provider = new SorterProviderImpl();
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
@@ -84,7 +51,7 @@ public class Exercise2Test {
         csv.write("Benchmark.csv","Ascending",listener,type,length);
         sorter.removeSorterListener(listener);
     }
-    public void Random(SorterType type, int length, String path) throws IOException{
+    private void Random(SorterType type, int length) throws IOException{
         SorterProviderImpl provider = new SorterProviderImpl();
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
@@ -96,7 +63,7 @@ public class Exercise2Test {
         csv.write("Benchmark.csv","Random",listener,type,length);
         sorter.removeSorterListener(listener);
     }
-    public void Descending(SorterType type, int length, String path) throws IOException{
+    private void Descending(SorterType type, int length) throws IOException{
         SorterProviderImpl provider = new SorterProviderImpl();
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
