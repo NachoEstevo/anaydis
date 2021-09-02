@@ -21,14 +21,25 @@ abstract class AbstractSorter implements ObservableSorter {
     }
 
     public  <T> void swap(List<T> list, int i, int j) {
+        for (ListenerImpl listener: listeners) {
+            listener.swap(i,j);
+        }
         final T aux =  list.set(i,list.get(j));
         list.set(j,aux);
     }
 
     public  <T> boolean greater(Comparator<T> comparator, List<T> list, int i, int j) {
+        if (list.get(i).equals(list.get(j))){
+            for (int k = 0; i< listeners.size(); k++){
+                listeners.get(i).equals(i,i-2);
+            }
+        }
+        for (int k = 0; i < listeners.size(); k++) {
+            listeners.get(i).greater(i,i-3);
+        }
         return comparator.compare(list.get(i),list.get(j)) > 0;
     }
-    public <T> boolean greater(T item1, T item2,Comparator<T> comparator){//Inefficient
+    public <T> boolean greater(T item1, T item2,Comparator<T> comparator){
         if (item1.equals(item2)){
             for (int i = 0; i< listeners.size(); i++){
                 listeners.get(i).equals(i,i-2);

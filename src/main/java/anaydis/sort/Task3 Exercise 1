@@ -1,0 +1,51 @@
+A sorting algorithm is stable if it preserves the order of duplicate keys.
+
+1. Es ShellSort estable?
+El ShellSort no es estable, ya que los valores adyacentes aparecerán en diferentes sublistas
+en las primeras pasadas y pueden moverse en diferentes direcciones.
+
+
+2. Es QuickSort estable?
+
+El quicksort no es estable, debido a que el partition no lo es. Esto sucede porque una clave puede ser movida cuando se cruza con otra iguales sin haber sido chequeada.
+Ademas el quicksort no es muy bueno cuando contamos con muchas claves duplicadas.
+
+Que pasa al sortear con un algoritmo no estable?
+Si primero sorteamos por nombre la siguiente lista:
+
+David    A
+Belen    B
+Lucia    A
+Esteban  B
+Carolina A
+
+Lista sorteada por nombre:
+
+Belen     B
+Carolina  A
+David     A
+Esteban   B
+Lucia     A
+
+Si ahora la sorteamos nuevamente por el segundo parametro con un algoritmo que no es estable, podemos  recibir una lista como la siguiente:
+
+David       A
+Lucia       A
+Carolina    A
+Belen       B
+Esteban     B
+
+Que es lo que pasó? Se sobreescribió la lista previamente ordenada. Ahora ordenamos por el segundo parametro pero no tuvimos en cuenta el anterior. Con un algoritmo estable hubieramos
+obtenido la siguiente lista:
+
+Carolona    A
+David       A
+Lucia       A
+Belen       B
+Esteban     B
+
+Vemos como está ordenada respecto del segundo parametro: A,A,A,B,B y ademas las claves repetidas tambien estan ordenadas alfabeticamente.
+
+
+3.
+En el gráfico se puede ver el particionamiento estudiado en el quicksort. Vemos como la lista se subdivide en 2 para ir ordenandose independientemente
