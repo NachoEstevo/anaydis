@@ -21,4 +21,5 @@ public class ShellSorter extends AbstractSorter{
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list, int h){
         hsorter.sort(comparator,list,h);
     }
+    public HSorter getHsorter(){ return hsorter;}
 }
