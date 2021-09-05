@@ -8,18 +8,22 @@ public class SorterProviderImpl implements SorterProvider{
     private final Map<SorterType, Sorter> sorters = new EnumMap<>(SorterType.class);
 
     public SorterProviderImpl(){ //Fix this using the methods implemented below
-        final SelectionSorter selection = new SelectionSorter();
-        sorters.put(selection.getType(),selection);
-        final BubbleSorter bubble = new BubbleSorter();
-        sorters.put(bubble.getType(),bubble);
-        final InsertionSorter insertion = new InsertionSorter();
-        sorters.put(insertion.getType(),insertion);
-        final QuickSorter quickSorter = new QuickSorter();
-        sorters.put(quickSorter.getType(),quickSorter);
-        final ShellSorter shellSorter = new ShellSorter();
-        sorters.put(shellSorter.getType(),shellSorter);
-        final HSorter hsorter = new HSorter();
-        sorters.put(hsorter.getType(),hsorter);
+
+        sorters.put(SorterType.SELECTION, new SelectionSorter());
+
+        sorters.put(SorterType.BUBBLE,new BubbleSorter());
+
+        sorters.put(SorterType.INSERTION,new InsertionSorter());
+
+        sorters.put(SorterType.QUICK,new QuickSorter());
+
+        sorters.put(SorterType.SHELL,new ShellSorter());
+
+        sorters.put(SorterType.H,new HSorter());
+
+        sorters.put(SorterType.QUICK_NON_RECURSIVE,new QuickSorterNonRecursive());
+
+        sorters.put(SorterType.QUICK_CUT,new QuickSorterCut());
     }
     @Override
     public @NotNull Iterable<Sorter> getAllSorters(){

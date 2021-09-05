@@ -95,12 +95,40 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK, 100);
     }
-
-    /** Test QuickSorter with String generator. */
-
     @Test public void testQuickWithStringGenerator() {
         testSorter(createStringDataSetGenerator(), SorterType.QUICK, 10);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK, 50);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK, 100);
     }
+
+    /** Test QuickSorter NonRecursive with String generator. */
+
+    @Test public void testQuickNonRecursiveWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
+    }
+    /** Test QuickSorter NonRecursive with String generator. */
+    @Test public void testQuickNonRecursiveWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
+    }
+    /** Test QuickSorter with Cutoff with String generator. */
+
+    @Test public void testQuickCutWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 100);
+    }
+    /** Test QuickSorter with Cutoff with String generator. */
+    @Test public void testQuickCutWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 100);
+    }
+
+
+
+
 }
