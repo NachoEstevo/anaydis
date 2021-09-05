@@ -67,6 +67,44 @@ abstract class AbstractSorter implements ObservableSorter {
         return i; //return index of item now known to be in place
     }
 
+    public <T>void merge(List<T> list, int low, int middle, int high, Comparator<T> comparator){
+        int n1 = middle - low + 1;
+        int n2 = high - middle;
+
+        List<T> leftList = new ArrayList<>();
+        List<T> rightList = new ArrayList<>();
+
+        for (int i = 0; i < n1; i++) {
+            leftList.add(i, list.get(low + 1));
+        }
+        for (int i = 0; i < n2; i++) {
+            rightList.add(i, list.get(middle + i + 1));
+        }
+        int i = 0,j = 0;
+        int k = low;
+
+        while (i < n1 && j < n2){
+            if (greater(rightList.get(j),leftList.get(i),comparator)){
+                list.set(k, leftList.get(i));
+                i++;
+            } else{
+                list.set(k,rightList.get(j));
+                j++;
+            }
+            k++;
+        }
+        while (i < n1){
+            list.set(k,leftList.get(i));
+            i++;
+            k++;
+        }
+        while (j < n2){
+            list.set(k,rightList.get(j));
+            j++;
+            k++;
+        }
+    }
+
     @Override
     public void addSorterListener(@NotNull final SorterListener listener) {
         listeners.add((ListenerImpl) listener);

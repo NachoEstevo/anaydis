@@ -114,8 +114,8 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
     }
-    /** Test QuickSorter with Cutoff with String generator. */
 
+    /** Test QuickSorter with Cutoff with String generator. */
     @Test public void testQuickCutWithStringGenerator() {
         testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 10);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 50);
@@ -126,6 +126,18 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 100);
+    }
+    /** Test MergeSorter TopDown with String generator. */
+    @Test public void testMergeTopDownWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 100);
+    }
+    /** Test MergeSorter TopDown with String generator. */
+    @Test public void testMergeTopDownWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.MERGE_TOP_DOWN, 100);
     }
 
 
