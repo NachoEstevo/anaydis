@@ -40,9 +40,7 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     }
 
     @Override
-    public @NotNull Comparator<Integer> getComparator() {
-        return Comparator.naturalOrder();
-    }
+    public @NotNull Comparator<Integer> getComparator() {return Comparator.naturalOrder();}
 
     private List<Integer> integerListInit() {
         return Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26,

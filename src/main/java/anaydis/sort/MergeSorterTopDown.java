@@ -10,14 +10,16 @@ public class MergeSorterTopDown extends AbstractSorter{
     public MergeSorterTopDown(){super(SorterType.MERGE_TOP_DOWN);}
 
     @Override
-    public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {mergeTopDown(list,0,list.size()-1,comparator);}
+    public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
+        mergetopDown(list , 0 , list.size() - 1 , comparator);
+    }
 
-    public <T>void mergeTopDown(List<T> list, int low, int high,Comparator<T> comparator){
+    private  <T> void mergetopDown(List<T> list , int low , int high , Comparator<T>  comparator){
         if(low < high) {
-            int mid = (low + high)/2;
-            mergeTopDown(list, low, mid,comparator);
-            mergeTopDown(list, mid + 1, high,comparator);
-            merge(list, low, mid, high,comparator);
+            int mid = (low + high) / 2;
+            mergetopDown(list, low, mid, comparator);
+            mergetopDown(list, mid + 1, high, comparator);
+            merge(list, low, mid, high, comparator);
         }
     }
 }

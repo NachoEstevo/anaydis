@@ -66,40 +66,75 @@ abstract class AbstractSorter implements ObservableSorter {
         swap(list, i, hi); //swap with partitioning item
         return i; //return index of item now known to be in place
     }
+    /*
+    public <T>Node<T> merge(Node<T> a, Node<T> b) {
+        Node<T> c, result = new Node<>();
+        for(result = c; a != null && b != null; c = c.next) {
+            if (a.value < b.value) {
+                c.next = a;
+                a = a.next;
+            } else {
+                c.next = b;
+                b = b.next;
+            }
+        }
+        c.next = a == null ? b : a;
+        return result.next;
+    }*/
+   public <T>List<T> merge(List<T> listA, List<T> listB,Comparator<T> comparator) {
+        List<T> result = new ArrayList<>();
+        for (int i = 0, j = 0, k = 0; k < listA.size() + listB.size(); k++) {
+            if(i >= listA.size()) {
+                result.set(i,listB.get(i++));
+            }
+            else if (j >= listB.size()) {
+                result.set(i,listA.get(j++));
+            }
+            else {
+                result.set(i,greater(listA.get(i),listB.get(j),comparator)? listA.get(i++) : listB.get(j++));
+            }
+        }
+        listA = result;
+       return listA;
+    }
 
-    public <T>void merge(List<T> list, int low, int middle, int high, Comparator<T> comparator){
+    public <T> void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
         int n1 = middle - low + 1;
         int n2 = high - middle;
 
         List<T> leftList = new ArrayList<>();
         List<T> rightList = new ArrayList<>();
 
-        for (int i = 0; i < n1; i++) {
-            leftList.add(i, list.get(low + 1));
+        for (int i = 0; i < n1 ; i++) {
+            leftList.add(i , list.get(low + 1));
         }
-        for (int i = 0; i < n2; i++) {
-            rightList.add(i, list.get(middle + i + 1));
+        for (int j = 0; j < n2 ; j++) {
+            rightList.add(j , list.get(middle + j + 1));
         }
-        int i = 0,j = 0;
+
+        int i = 0, j = 0;
+
         int k = low;
 
-        while (i < n1 && j < n2){
-            if (greater(rightList.get(j),leftList.get(i),comparator)){
-                list.set(k, leftList.get(i));
+        while ( i < n1 && j < n2){
+            if (greater(rightList.get(j) , leftList.get(i) , comparator)){
+                list.set(k , leftList.get(i));
                 i++;
-            } else{
-                list.set(k,rightList.get(j));
+            }else {
+                list.set(k , rightList.get(j));
                 j++;
             }
             k++;
         }
+
         while (i < n1){
-            list.set(k,leftList.get(i));
+            list.set(k , leftList.get(i));
             i++;
             k++;
         }
+
         while (j < n2){
-            list.set(k,rightList.get(j));
+            list.set(k , rightList.get(j));
             j++;
             k++;
         }
