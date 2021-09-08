@@ -88,44 +88,30 @@ abstract class AbstractSorter implements ObservableSorter {
     public <T>boolean equals(T obj1, T obj2, Comparator<T> comparator){return comparator.compare(obj1,obj2) == 0;}
 
     public <T> void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
-        int n1 = middle - low + 1;
-        int n2 = high - middle;
+        int l2 = middle +1;
 
-        List<T> leftList = new ArrayList<>();
-        List<T> rightList = new ArrayList<>();
-
-        for (int i = 0; i < n1 ; i++) {
-            leftList.add(i , list.get(low + 1));
-        }
-        for (int j = 0; j < n2 ; j++) {
-            rightList.add(j , list.get(middle + j + 1));
+        if (greater(list.get(l2) , list.get(middle) , comparator)){
+            return;
         }
 
-        int i = 0, j = 0;
+        while (low <= middle && l2 <= high){
 
-        int k = low;
+            if (greater( list.get(l2), list.get(low),  comparator)){
+                low++;
+            }else{
+                T v = list.get(l2);
+                int index = l2;
 
-        while ( i < n1 && j < n2){
-            if (greater(rightList.get(j) , leftList.get(i) , comparator)){
-                list.set(k , leftList.get(i));
-                i++;
-            }else {
-                list.set(k , rightList.get(j));
-                j++;
+                while (index != low){
+                    list.set(index , list.get(index-1));
+                    index--;
+                }
+                list.set(low , v);
+
+                low++;
+                middle++;
+                l2++;
             }
-            k++;
-        }
-
-        while (i < n1){
-            list.set(k , leftList.get(i));
-            i++;
-            k++;
-        }
-
-        while (j < n2){
-            list.set(k , rightList.get(j));
-            j++;
-            k++;
         }
     }
 
