@@ -85,10 +85,9 @@ abstract class AbstractSorter implements ObservableSorter {
         return result.next;
     }*/
 
+    public <T>boolean equals(T obj1, T obj2, Comparator<T> comparator){return comparator.compare(obj1,obj2) == 0;}
 
-
-    public <T>void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
-        //Should merge be in another abstract class that extends abstract sorter and is only used in the quicks?
+    public <T> void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
         int n1 = middle - low + 1;
         int n2 = high - middle;
 

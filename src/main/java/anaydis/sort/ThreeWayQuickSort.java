@@ -6,80 +6,58 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ThreeWayQuickSort extends AbstractSorter { //Efficient with duplicate keys. Keep the duplicate keys
-
+    int i , j;
     public ThreeWayQuickSort() {super(SorterType.QUICK_THREE_PARTITION);}
 
     @Override
-    public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
+    public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {sort(list , 0 , list.size()-1 , comparator);}
 
-        for (T value : list) {
-            System.out.println(value);
-        }
-        System.out.println("###############");
-        threeWay(list, 0, list.size()-1, comparator);
-        for (T t : list) {
-            System.out.println(t);
-        }
-        System.out.println("############");
+
+    private  <T> void sort(List<T> list , int l , int r , Comparator<T> comparator ){
+        if (r <= l) return;
+        i= 0;
+        j= 0;
+        patition(list , l , r , comparator);
+        sort(list , l , j , comparator);
+        sort(list , i , r , comparator);
     }
 
+    private <T> void patition(List<T> list , int l , int r , Comparator<T> comparator){
+        i = l-1;
+        j = r;
+        int p = l-1;
+        int q = r;
+        T v = list.get(r);
+        while (true){
+            while (greater(v , list.get(++i) , comparator)) if (i == r) break;
 
-    private <T> void threeWay(List<T> list, int low, int high, Comparator<T> comparator){
-        int pivot = partition(list,low,high,comparator);
-        int leftEqualKeysCount = 0;
-        int rightEqualKeysCount = 0;
-        while (true) {
-            while (!greater(comparator,list,low,pivot)){
-                low++;
+            while (greater(list.get(--j), v , comparator)){
+                if (j == l) break;
             }
-            while (greater(comparator,list,high,pivot)) {
-                if (high == low)
-                    break;
-                high--;
-            }
-
-            if (low == high && list.get(low).equals(list.get(pivot))) {
-                swap(list, low + leftEqualKeysCount, low);
-                leftEqualKeysCount++;
-                low++;
-            }
-
-            if (low >= high) {
+            if (i >= j) {
                 break;
             }
-
-            swap(list, low, high);
-
-            if (list.get(low).equals(list.get(pivot))) {
-                swap(list, low + leftEqualKeysCount, low);
-                leftEqualKeysCount++;
+            swap(list , i , j);
+            if (equals(list.get(i) , v , comparator)){
+                p++;
+                swap(list , p , i);
             }
-
-            if (list.get(high).equals(list.get(pivot))) {
-                swap(list, high, high - rightEqualKeysCount);
-                rightEqualKeysCount++;
+            if (equals(list.get(j) , v , comparator)){
+                q--;
+                swap(list , q , j);
             }
-            low++; high--;
+        }
+
+        swap(list , i , r);
+
+        j =  i - 1;
+        for (int k = l; k < p ; k++ , j--) {
+            swap(list , k , j);
+        }
+        i++;
+        for (int k =  r-1; k > q; k-- , i++)  {
+            swap(list , i , k);
         }
     }
-    /*private <T> void sort(List<T> list, int low, int high, Comparator<T> comparator) {
-        int pivot = partition(list, low, high, comparator);
-        int i = low;
-        int j = high;
-
-        while (i < j) {
-            while (i < j && !greater(list.get(i), list.get(pivot), comparator)) {
-                i += 1;
-            }
-            while (j >= i && greater(list.get(j), list.get(pivot), comparator)) {
-                j -= 1;
-            }
-            if (i < j) {
-                list.set(i,list.get(j));
-                list.set(j,list.get(i));
-            }
-        }
-        list.set(pivot,list.get(j));
-        list.set(j,list.get(pivot));
-    }*/
 }
+
