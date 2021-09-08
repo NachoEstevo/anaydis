@@ -3,7 +3,6 @@ package anaydis.sort;
 import anaydis.sort.gui.ObservableSorter;
 import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -26,6 +25,10 @@ abstract class AbstractSorter implements ObservableSorter {
         }
         final T aux =  list.set(i,list.get(j));
         list.set(j,aux);
+    }
+    public <T>void compExch(List<T> a, int i, int j, Comparator<T> comp) {
+        if (greater(a.get(i), a.get(j) , comp))
+            swap(a, i, j);
     }
 
     public  <T> boolean greater(Comparator<T> comparator, List<T> list, int i, int j) {
@@ -50,7 +53,7 @@ abstract class AbstractSorter implements ObservableSorter {
         }
         return comparator.compare(item1,item2) >0;
     }
-    public <T> int partition(List<T> list, int lo, int hi,Comparator<T> comparator) {
+    public <T> int partition(List<T> list, int lo, int hi,Comparator<T> comparator) { //Should partition be in another abstract class that extends abstract sorter and is only used in the quicks?
         int i = lo - 1;
         int j = hi;
         while(true) {
@@ -81,24 +84,11 @@ abstract class AbstractSorter implements ObservableSorter {
         c.next = a == null ? b : a;
         return result.next;
     }*/
-   public <T>List<T> merge(List<T> listA, List<T> listB,Comparator<T> comparator) {
-        List<T> result = new ArrayList<>();
-        for (int i = 0, j = 0, k = 0; k < listA.size() + listB.size(); k++) {
-            if(i >= listA.size()) {
-                result.set(i,listB.get(i++));
-            }
-            else if (j >= listB.size()) {
-                result.set(i,listA.get(j++));
-            }
-            else {
-                result.set(i,greater(listA.get(i),listB.get(j),comparator)? listA.get(i++) : listB.get(j++));
-            }
-        }
-        listA = result;
-       return listA;
-    }
 
-    public <T> void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
+
+
+    public <T>void merge(List<T> list , int low , int middle, int high , Comparator<T> comparator){
+        //Should merge be in another abstract class that extends abstract sorter and is only used in the quicks?
         int n1 = middle - low + 1;
         int n2 = high - middle;
 

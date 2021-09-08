@@ -19,6 +19,8 @@ public class SorterProviderImpl implements SorterProvider{
         sorters.put(SorterType.QUICK_CUT,new QuickSorterCut());
         sorters.put(SorterType.MERGE_BOTTOM_UP,new MergeSorterBottomUp());
         sorters.put(SorterType.MERGE_TOP_DOWN,new MergeSorterTopDown());
+        sorters.put(SorterType.QUICK_THREE_PARTITION,new ThreeWayQuickSort());
+        sorters.put(SorterType.QUICK_MED_OF_THREE,new QuickMedOfThree());
     }
     @Override
     public @NotNull Iterable<Sorter> getAllSorters(){

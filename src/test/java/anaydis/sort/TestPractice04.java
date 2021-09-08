@@ -35,8 +35,33 @@ public class TestPractice04 extends SorterTest{
         testSorter(createIntegerDataSetGenerator(), SorterType.MERGE_BOTTOM_UP, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.MERGE_BOTTOM_UP, 100);
     }
-    /*
-    @Test public void duplicates(){ //Im having issues with duplicates. Items are being overwritten
+
+    /** Test ThreeWay Sort  with String generator.*/
+    @Test public void testThreeWayWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 100);
+    }
+    /** Test Three Way Sort with String generator. */
+    @Test public void testThreeWayWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 100);
+    }
+
+    /** Test Median of Three Sort  with String generator. */
+    @Test public void testMedianOfThreeWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
+    }
+    /** Test Median of Three Sort with String generator. */
+    @Test public void testMedianOfThreeWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
+    }
+    /*@Test public void duplicates(){ //Im having issues with duplicates. Items are being overwritten
         List<Integer> ints = new ArrayList<>();
         ints.add(1);
         ints.add(1);
