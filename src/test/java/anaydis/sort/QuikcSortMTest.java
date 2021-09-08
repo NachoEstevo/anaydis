@@ -1,6 +1,8 @@
 package anaydis.sort;
 
 import org.junit.Test;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class QuikcSortMTest {
@@ -8,9 +10,10 @@ public class QuikcSortMTest {
 
 
     @Test
-    public void CutQuickSortMFinding(){
+    public void CutQuickSortMFinding() throws IOException {
         QuickSorterCut quickSorterCut = new QuickSorterCut();
         IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
+        CsvWriter writer = new CsvWriter();
 
         ArrayList<Integer> sizes = new ArrayList<>();
         sizes.add((int) Math.pow(10,3));
@@ -26,7 +29,8 @@ public class QuikcSortMTest {
                 quickSorterCut.sort(generator.getComparator(),randInts,i);
                 long second = System.currentTimeMillis();
                 long result = second - first;
-                System.out.println("For an M:" + i + " it took " + result + " miliseconds");
+                writer.writeForMBenchmark("./Benchmark-M.txt",i,result,size);
+                //System.out.println("For an M:" + i + " it took " + result + " miliseconds");
             }
         }
     }
