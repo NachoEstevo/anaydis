@@ -32,9 +32,10 @@ public class IntegerDataSetGenerator implements DataSetGenerator<Integer>{
     @Override
     public @NotNull List<Integer> createRandom(int length) {
         integerList = new ArrayList<>();
+        Random random = new Random(25);
 
         for (int i = 0; i < length; i++) {
-            integerList.add((int) (Math.random() * 1000));
+            integerList.add(random.nextInt(1000));
         }
         return integerList;
     }

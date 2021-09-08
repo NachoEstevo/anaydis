@@ -22,4 +22,16 @@ public class QuickSorterCut extends AbstractSorter {
         quicksort(comparator,list, l, i - 1);
         quicksort(comparator,list, i + 1, r);
     }
+
+    public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list, int m) {
+        quicksort(comparator,list,0,list.size()-1, m);
+        insertion.sort(comparator,list);
+    }
+
+    private <T> void quicksort(@NotNull Comparator<T> comparator, @NotNull List<T> list, int l, int r, int m){
+        if (r-l <= m) return;
+        int i = partition(list, l, r,comparator);
+        quicksort(comparator,list, l, i - 1);
+        quicksort(comparator,list, i + 1, r);
+    }
 }

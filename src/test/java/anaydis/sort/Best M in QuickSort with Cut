@@ -1,0 +1,24 @@
+Best M results
+ Analyzed in class:  QuickSortMTest
+
+10^3
+M = 9  12 milis
+M = 11  12 milis
+M = 12 13 milis
+M = 13  11 milis
+
+10^4
+M = 9  58 milis
+M = 12  54 milis
+M = 13  54 milis
+
+10^5
+M = 10  2155 milis
+M = 11 2114 milis
+M = 12  2728 milis
+M = 13  2826 milis
+
+10^6
+M = 9  1902 milis
+M = 10  1859 milis
+M = 11 2074 milis
