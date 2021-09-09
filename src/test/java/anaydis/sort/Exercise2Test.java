@@ -19,22 +19,22 @@ public class Exercise2Test {
             types.add(SorterType.SELECTION);
             types.add(SorterType.INSERTION);
             types.add(SorterType.BUBBLE);
-            //types.add(SorterType.QUICK);
-            //types.add(SorterType.SHELL);
+            types.add(SorterType.QUICK);
+            types.add(SorterType.SHELL);
 
             ArrayList<Integer> sizes = new ArrayList<>();
             sizes.add(10);
-            //sizes.add(50);
-            //sizes.add(500);
-            //sizes.add(1000);
+            sizes.add(50);
+            sizes.add(500);
+            sizes.add(1000);
 
-            for (SorterType type: types) {
+            /*for (SorterType type: types) {
                 for (int size: sizes) {
                     sorterTest.Ascending(type,size);
                     sorterTest.Descending(type,size);
                     sorterTest.Random(type,size);
                 }
-            }
+            }*/
         }
 
 //Can I fix this? Put it all in one method. Temporary solution
@@ -47,33 +47,31 @@ public class Exercise2Test {
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();
-        csv.write("Benchmark.csv","Ascending",listener,type,length);
+        csv.write("./Benchmark.csv","Ascending",listener,type,length);
         sorter.removeSorterListener(listener);
     }
     private void Random(SorterType type, int length) throws IOException{
         SorterProviderImpl provider = new SorterProviderImpl();
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
-        ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createAscending(length);
+        ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createRandom(length);
         ListenerImpl listener = new ListenerImpl();
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();
-        csv.write("Benchmark.csv","Random",listener,type,length);
+        csv.write("./Benchmark.csv","Random",listener,type,length);
         sorter.removeSorterListener(listener);
     }
     private void Descending(SorterType type, int length) throws IOException{
         SorterProviderImpl provider = new SorterProviderImpl();
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
-        ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createAscending(length);
+        ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createDescending(length);
         ListenerImpl listener = new ListenerImpl();
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();
-        csv.write("Benchmark.csv","Descending",listener,type,length);
+        csv.write("./Benchmark.csv","Descending",listener,type,length);
         sorter.removeSorterListener(listener);
     }
-
-
 }
