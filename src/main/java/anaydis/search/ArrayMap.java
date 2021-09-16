@@ -24,6 +24,9 @@ public class ArrayMap<K, V> implements Map<K , V> {
     public int size() {return keys.size();}
 
     @Override
+    public boolean isEmpty(){return size ==0;}
+
+    @Override
     public boolean containsKey(@NotNull K key) {return indexOf(key) != -1;}
 
     @Override
@@ -45,12 +48,14 @@ public class ArrayMap<K, V> implements Map<K , V> {
           moveElementsRight(index);
           keys.set(index,key);
         }
+        //size++;
         return values.set(index,value);
     }
 
     private void moveElementsRight(int index) {
         for (int i = size++; i > index; i--) {
             keys.set(i,keys.get(i-1));
+            values.set(i,values.get(i-1));
         }
     }
 
@@ -61,7 +66,7 @@ public class ArrayMap<K, V> implements Map<K , V> {
                 keys.set(i-1 , keys.get(i));
                 values.set(i-1 , values.get(i));
             }
-            size--;
+            //size--;
         }
     }
 
@@ -90,7 +95,7 @@ public class ArrayMap<K, V> implements Map<K , V> {
     @Override
     public Iterator<K> keys() {return keys.iterator();}
 
-    private int indexOf( @NotNull K key) {
+    private int indexOf(K key) {
         final int index = find(key, 0, size - 1);
         if (index < 0) {
             return -1;
