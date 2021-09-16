@@ -1,4 +1,4 @@
-package anaydis.sort;
+package anaydias.search;
 
 
 import anaydis.search.Map;
@@ -13,7 +13,7 @@ public class ArrayMap<K, V> implements Map<K , V> {
 
     private final List<K> keys;
     private final List<V> values;
-    private int size;
+    private int size; //Do I need to have a size or can I just use keys.size()
     private final Comparator<K> comparator;
 
     public ArrayMap( Comparator<K> comparator){
@@ -31,21 +31,29 @@ public class ArrayMap<K, V> implements Map<K , V> {
 
     @Override
     public V get(@NotNull K key) {
-        if (containsKey(key)){
-            return null;
-        }
-        return values.get(indexOf(key));
+       final int index = indexOf(key);
+       if (index != -1){
+           return values.get(index);
+       }
+       return null;
     }
 
     @Override
     public V put(@NotNull K key, V value) {
-        final int index = find(key, 0, keys.size()-1);
-        if(index >= 0){
-            return values.set(index, value);
-        }else {
-            keys.add(-index - 1, key);
-            values.add(-index - 1, value);
-            return null;
+        int index = find(key, 0, size-1);
+        if(index < 0){
+          index = (-index) - 1;
+          keys.add(null);
+          values.add(null);
+          moveElementsRight(index);
+          keys.set(index,key);
+        }
+        return values.set(index,value);
+    }
+
+    private void moveElementsRight(int index) {
+        for (int i = size++; i > index; i--) {
+            keys.set(i,keys.get(i-1));
         }
     }
 
@@ -60,23 +68,24 @@ public class ArrayMap<K, V> implements Map<K , V> {
         }
     }
 
-    public int find(K key , int high , int low){
+    public int find(K key , int low , int high){
         if (low > high) return -(low+1);
-
-        int middle = (low + high) / 2;
+        final int middle = (low + high) / 2;
         int cmp = comparator.compare(key , keys.get(middle));
         if (cmp == 0){
             return middle;
         }
-        if (cmp < 0){
-            find(key , low , middle-1 );
+        else if (cmp < 0){
+            return find(key , low , middle-1 );
         }
-        find(key , middle+1 , high);
-        return middle;
+        else {
+            return find(key, middle + 1, high);
+        }
     }
 
     @Override
     public void clear() {
+        size = 0;
         keys.clear();
         values.clear();
     }
@@ -84,13 +93,13 @@ public class ArrayMap<K, V> implements Map<K , V> {
     @Override
     public Iterator<K> keys() {return keys.iterator();}
 
-    private int indexOf( @NotNull Object key){
-        for (int i = 0; i <size -1 ; i++) {
-            if (key.equals(keys.get(i))) {
-                return i;
-            }
+    private int indexOf( @NotNull K key) {
+        final int index = find(key, 0, size - 1);
+        if (index < 0) {
+            return -1;
+        } else {
+            return index;
         }
-        return -1;
     }
 
 }
