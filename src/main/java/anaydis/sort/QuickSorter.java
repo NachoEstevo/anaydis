@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class QuickSorter extends AbstractSorter {
+public class QuickSorter extends AbstractQuick {
 
     QuickSorter() {super(SorterType.QUICK);}
 

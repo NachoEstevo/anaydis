@@ -3,11 +3,11 @@ package anaydis.sort;
 import anaydis.sort.gui.SorterListener;
 
 
-public class ListenerImpl implements SorterListener {
-    private int comparisson, swap, equals;
+public class Listener implements SorterListener {
+    private int comparison, swap, equals;
 
-    public ListenerImpl() {
-        comparisson = 0;
+    public Listener() {
+        comparison = 0;
         swap = 0;
         equals = 0;
     }
@@ -22,7 +22,7 @@ public class ListenerImpl implements SorterListener {
     public void equals(int i, int j) {equals++;}
 
     @Override
-    public void greater(int i, int j) {comparisson++;}
+    public void greater(int i, int j) {comparison++;}
 
     @Override
     public void swap(int i, int j) {swap++;}
@@ -31,7 +31,5 @@ public class ListenerImpl implements SorterListener {
 
     public int getEquals() {return equals;}
 
-    public int getComparisson() {return comparisson;}
-
-    public int Order() {return comparisson + swap + equals;}
+    public int getComparison() {return comparison;}
 }

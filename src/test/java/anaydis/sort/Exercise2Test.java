@@ -43,7 +43,7 @@ public class Exercise2Test {
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
         ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createAscending(length);
-        ListenerImpl listener = new ListenerImpl();
+        Listener listener = new Listener();
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();
@@ -55,7 +55,7 @@ public class Exercise2Test {
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
         ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createRandom(length);
-        ListenerImpl listener = new ListenerImpl();
+        Listener listener = new Listener();
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();
@@ -67,7 +67,7 @@ public class Exercise2Test {
         AbstractSorter sorter = (AbstractSorter) provider.getSorterForType(type);
         IntegerDataSetGenerator intGenerator = new IntegerDataSetGenerator();
         ArrayList<Integer> list = (ArrayList<Integer>) intGenerator.createDescending(length);
-        ListenerImpl listener = new ListenerImpl();
+        Listener listener = new Listener();
         sorter.addSorterListener(listener);
         sorter.sort(intGenerator.getComparator(),list);
         CsvWriter csv = new CsvWriter();

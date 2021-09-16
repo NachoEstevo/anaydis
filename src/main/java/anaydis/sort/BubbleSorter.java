@@ -25,9 +25,6 @@ public class BubbleSorter extends AbstractSorter{
                 break;
             }
         }
-        for (T t: list) {
-            System.out.println(t);
-        }
     }
 }
 

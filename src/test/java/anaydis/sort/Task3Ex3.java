@@ -28,9 +28,9 @@ public class Task3Ex3 {
         ShellSorter sorter = new ShellSorter();
         IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
         ArrayList<Integer> list = (ArrayList<Integer>) generator.createRandom(length);
-        ListenerImpl listener = new ListenerImpl();
+        Listener listener = new Listener();
 
-        sorter.getHsorter().addSorterListener(listener);
+        sorter.getHSorter().addSorterListener(listener);
         sorter.sort(generator.getComparator(), list,h);
         CsvWriter writer = new CsvWriter();
         writer.write("ShellExercise3.csv","Average Case",listener,sorter.getType(),h);

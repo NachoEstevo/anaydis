@@ -1,8 +1,6 @@
 package anaydis.sort;
 
-import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Comparator;
 import java.util.List;
 
@@ -13,7 +11,6 @@ public class InsertionSorter extends AbstractSorter {
     }
 
     @Override
-
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
 
         for (int i = 0; i < list.size(); i++) {
@@ -25,18 +22,6 @@ public class InsertionSorter extends AbstractSorter {
                 }
             }
         }
-        for (T t: list) {
-            System.out.println(t);
-        }
-    }
-
-    @Override
-    public void addSorterListener(@NotNull SorterListener listener) {
-
-    }
-    @Override
-    public void removeSorterListener(@NotNull SorterListener listener) {
-
     }
 }
 
