@@ -52,10 +52,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     @Override
     public V put(@NotNull K key, V value) {
         V previous = get(key);
-        if (size == 0){
-            head  = put(head,key,value);
-            return previous;
-        }
+
        int random  = (int) (Math.random() * 100);
        if (random < 50){
           head = rootPut(this.head, key, value);

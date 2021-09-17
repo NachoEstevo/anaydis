@@ -40,4 +40,26 @@ public class CsvWriter {
             JOptionPane.showMessageDialog(null, "Saving error");
         }
     }
+    public void writeHeaders(String path, String header){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true));
+            bufferedWriter.write(header);
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Saving error");
+        }
+    }
+
+    public void writeForQuijote(String path, String mapType, int size,long time){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true));
+
+            bufferedWriter.write(mapType + "," + size + "," + time);
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Saving error");
+        }
+    }
 }

@@ -1,0 +1,12 @@
+Type,size,time
+
+ArrayMap,5000,2094000
+RandomizedTreeMap,5000,300
+ArrayMap,50000,14201200
+RandomizedTreeMap,50000,700
+ArrayMap,100000,26457800
+RandomizedTreeMap,100000,200
+ArrayMap,150000,40709900
+RandomizedTreeMap,150000,200
+ArrayMap,200000,54576100
+RandomizedTreeMap,200000,300
