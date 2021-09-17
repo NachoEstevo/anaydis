@@ -25,15 +25,15 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     public boolean isEmpty() {return size == 0;}
 
     private Node<K,V> rotateLeft(@NotNull Node<K,V> node){
-        final Node<K,V> result = node.getRight();
-        node.right = result.getLeft();
-        result.left = node;
+        final @NotNull Node<K,V> result = node.getRight();
+        node.setRight(result.getLeft());
+        result.setLeft(node);
         return result;
     }
     private Node<K,V> rotateRight(@NotNull Node<K,V> node){
-        final Node<K,V> result = node.getLeft();
-        node.left = result.getRight();
-        result.right = node;
+        final @NotNull Node<K,V> result = node.getLeft();
+        node.setLeft(result.getRight());
+        result.setRight(node);
         return result;
     }
 
@@ -69,11 +69,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
         }else{
         int cmp = comparator.compare(key, node.getKey());
 
-        if (cmp < 0) node.left = put(node.getLeft(),key,value);
+        if (cmp < 0) node.setLeft(put(node.getLeft(),key,value));
 
-        else if (cmp > 0) node.right = put(node.getRight(),key,value);
+        else if (cmp > 0) node.setRight(put(node.getRight(),key,value));
 
-        else node.value = value;
+        else node.setValue(value);
         }
         return node;
     }
@@ -90,14 +90,14 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
         }else{
             int cmp = comparator.compare(key, node.getKey());
             if (cmp <0){
-                node.left = rootPut(node.getLeft(),key,value);
+                node.setLeft(rootPut(node.getLeft(),key,value));
                 return rotateLeft(node);
             }
             else if (cmp > 0){
-                node.right = rootPut(node.getRight(),key,value);
+                node.setRight(rootPut(node.getRight(),key,value));
                 return rotateRight(node);
             }else{
-                node.value = value;
+                node.setValue(value);
                 return node;
             }
         }
@@ -120,11 +120,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
                 if (!hasNext()) throw new NoSuchElementException();
                 while (aux != null) {
                     stack.push(aux);
-                    aux = aux.left;
+                    aux = aux.getLeft();
                 }
                 Node<K, V> previous = stack.pop();
-                aux = previous.right;
-                return previous.key;
+                aux = previous.getRight();
+                return previous.getKey();
             }
         };
     }

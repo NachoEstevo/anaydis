@@ -9,11 +9,11 @@ public class RandomizedTreeTest {
     @Test
     public void testRandomisedTreeMap(){
 
-        RandomizedTreeMap<String , Integer> randomizedTreeMap = new RandomizedTreeMap<String , Integer>(Comparator.naturalOrder());
-        randomizedTreeMap.put("A" , 1);
-        randomizedTreeMap.put("B" , 2);
-        randomizedTreeMap.put("C" , 3);
+        RandomizedTreeMap<Integer , Integer> randomizedTreeMap = new RandomizedTreeMap<Integer , Integer>(Comparator.naturalOrder());
+        randomizedTreeMap.put(0 , 1);
+        randomizedTreeMap.put(1 , 2);
+        randomizedTreeMap.put(2 , 3);
 
-        Assert.assertEquals((Integer) 2, randomizedTreeMap.get("B"));
+        Assert.assertEquals((Integer) 2, randomizedTreeMap.get(1));
     }
 }
