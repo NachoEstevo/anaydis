@@ -18,6 +18,7 @@ public class ArrayMapTest {
         map.put(1,10);
         map.put(5,20);
 
+
         //Assert.assertEquals((Integer)10,map.get(1)); Expected 10, actual 20. Why?
     }
 }

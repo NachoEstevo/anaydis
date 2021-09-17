@@ -107,7 +107,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     public Iterator<K> keys() {
         Stack<Node<K,V>> stack = new Stack<>();
 
-        return new Iterator<>() {
+        return new Iterator<K>() {
             Node<K, V> aux = head;
 
             @Override
