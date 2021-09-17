@@ -8,13 +8,14 @@ import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class RandomizedTreeMap<K,V> implements Map<K,V>{
-    private Node<K,V> head = null;
+    private Node<K,V> head;
     private int size;
     private final Comparator<K> comparator;
 
     public RandomizedTreeMap(Comparator<K> comparator){
        this.comparator = comparator;
        size = 0;
+       head = null;
     }
 
     @Override
@@ -41,14 +42,23 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
 
     @Override
     public V get(@NotNull K key) {
-        Node<K,V> node = find(head,key);
-        if (node != null) return node.getValue();
+        final Node<K,V> node = find(head,key);
+        if (node != null){
+            return node.getValue();
+        }
         return null;
     }
 
     @Override
     public V put(@NotNull K key, V value) {
-        return null;
+        V previous = get(key);
+       int random  = (int) (Math.random() * 100);
+       if (random < 50){
+           head = rootPut(head, key, value);
+       }else{
+           put(head,key,value);
+       }
+        return previous;
     }
 
 
@@ -119,9 +129,9 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     }
     private Node<K,V> find(Node<K,V> node, K key){
         if (node == null) return null;
-        int cmp = comparator.compare(key,node.key);
+        int cmp = comparator.compare(key,node.getKey());
         if (cmp == 0) return node;
-        else if (cmp <0) return find(node.left,key);
-        else return find(node.right,key);
+        else if (cmp <0) return find(node.getLeft(),key);
+        else return find(node.getRight(),key);
     }
 }
