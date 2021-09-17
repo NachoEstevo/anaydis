@@ -1,6 +1,5 @@
-package anaydis.sort;
+package anaydis.search;
 
-import anaydis.search.ArrayMap;
 import org.junit.Assert;
 import org.junit.Test;
 

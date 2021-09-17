@@ -56,7 +56,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
        if (random < 50){
            head = rootPut(head, key, value);
        }else{
-           put(head,key,value);
+           head = put(head,key,value);
        }
         return previous;
     }
@@ -107,21 +107,22 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     public Iterator<K> keys() {
         Stack<Node<K,V>> stack = new Stack<>();
 
-        return new Iterator<K>(){
-            Node<K,V> aux = head;
+        return new Iterator<>() {
+            Node<K, V> aux = head;
 
             @Override
-            public boolean hasNext(){
+            public boolean hasNext() {
                 return !(aux == null);
             }
+
             @Override
-            public K next(){
+            public K next() {
                 if (!hasNext()) throw new NoSuchElementException();
-                while (aux != null){
+                while (aux != null) {
                     stack.push(aux);
                     aux = aux.left;
                 }
-                Node<K,V> previous = stack.pop();
+                Node<K, V> previous = stack.pop();
                 aux = previous.right;
                 return previous.key;
             }
