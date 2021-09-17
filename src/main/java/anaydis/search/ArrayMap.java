@@ -21,8 +21,25 @@ public class ArrayMap<K, V> implements Map<K , V> {
     }
 
     @Override
-    public int size() {return size;}
+    public int size() {return keys.size();}
 
+    @Override
+    public V get(@NotNull K key) {
+        final int index = indexOf(key);
+        if (index != -1){
+            return values.get(index);
+        }
+        return null;
+    }
+    public int indexOf(K key) {
+        final int index = find(key,0,size-1);
+        if (index < 0){
+            return -1;
+        }
+        else{
+            return index;
+        }
+    }
     @Override
     public boolean isEmpty(){return size == 0;}
 
@@ -30,23 +47,14 @@ public class ArrayMap<K, V> implements Map<K , V> {
     public boolean containsKey(@NotNull K key) {return indexOf(key) != -1;}
 
     @Override
-    public V get(@NotNull K key) {
-       final int index = indexOf(key);
-       if (index != -1){
-           return values.get(index);
-       }
-       return null;
-    }
-
-    @Override
     public V put(@NotNull K key, V value) {
         int index = find(key, 0, size-1);
         if(index < 0){
-          index = (-index) - 1;
-          keys.add(null);
-          values.add(null);
-          moveElementsRight(index);
-          keys.set(index,key);
+            index = (-index) - 1;
+            keys.add(null);
+            values.add(null);
+            moveElementsRight(index);
+            keys.set(index,key);
         }
         //size++;
         return values.set(index,value);
@@ -95,18 +103,4 @@ public class ArrayMap<K, V> implements Map<K , V> {
     @Override
     public Iterator<K> keys() {return keys.iterator();}
 
-    private int indexOf(K key) {
-        final int index = find(key,0,size-1);
-        if (index < 0){
-            return -1;
-        }
-        else{
-            return index;
-        }
-    }
-        /*for (int i = 0; i < keys.size()-1; i++) {
-            if(key.equals(keys.get(i))) return i;
-        }
-            return -1;
-        }*/
     }
