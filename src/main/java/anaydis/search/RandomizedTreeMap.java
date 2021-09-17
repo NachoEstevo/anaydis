@@ -25,13 +25,13 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     public boolean isEmpty() {return size == 0;}
 
     private Node<K,V> rotateLeft(@NotNull Node<K,V> node){
-        final Node<K,V> result = node.getRight();
+        final @NotNull Node<K,V> result = node.getRight();
         node.setRight(result.getLeft());
         result.setLeft(node);
         return result;
     }
     private Node<K,V> rotateRight(@NotNull Node<K,V> node){
-        final Node<K,V> result = node.getLeft();
+        final @NotNull Node<K,V> result = node.getLeft();
         node.setLeft(result.getRight());
         result.setRight(node);
         return result;

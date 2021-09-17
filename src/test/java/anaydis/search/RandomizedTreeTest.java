@@ -14,6 +14,7 @@ public class RandomizedTreeTest {
         randomizedTreeMap.put(1 , 2);
         randomizedTreeMap.put(2 , 3);
 
+
         Assert.assertEquals((Integer) 2, randomizedTreeMap.get(1));
     }
 }
