@@ -54,9 +54,9 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
         V previous = get(key);
        int random  = (int) (Math.random() * 100);
        if (random < 50){
-           head = rootPut(head, key, value);
+           this.head = rootPut(this.head, key, value);
        }else{
-           head = put(head,key,value);
+           this.head = put(this.head,key,value);
        }
         return previous;
     }
