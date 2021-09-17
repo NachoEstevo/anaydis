@@ -65,7 +65,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     public Node<K,V> put(Node<K,V> node,@NotNull K key, V value) {
         if (node == null){
             size++;
-            return  new Node<>(key,value);
+            return new Node<>(key,value);
         }else{
         int cmp = comparator.compare(key, node.getKey());
 
@@ -91,11 +91,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
             int cmp = comparator.compare(key, node.getKey());
             if (cmp <0){
                 node.setLeft(rootPut(node.getLeft(),key,value));
-                return rotateLeft(node);
+                return rotateRight(node);
             }
             else if (cmp > 0){
                 node.setRight(rootPut(node.getRight(),key,value));
-                return rotateRight(node);
+                return rotateLeft(node);
             }else{
                 node.setValue(value);
                 return node;
