@@ -22,7 +22,7 @@ public class QuijoteTask {
 
         try{
             CsvWriter writer = new CsvWriter();
-            writer.writeHeaders("./QuijoteTimers","Type,size,time\n");
+            writer.writeHeaders("./QuijoteTimers","Type,size,time,misses\n");
             for (int j : nSize) {
                 Map<String, Integer> arrayMap = new ArrayMap<>(comparator);
                 Map<String, Integer> randomizedTreeMap = new ArrayMap<>(comparator);
@@ -39,20 +39,23 @@ public class QuijoteTask {
                 long randomizedTimer = 0;
                 long start;
                 long end;
+                int missesArrayMap = 0;
+                int missesRandomized = 0;
 
                 for (String s : reversed) {
                     start = System.nanoTime();
-                    arrayMap.get(s);
+                    if (arrayMap.get(s) == null) missesArrayMap++;
                     end = System.nanoTime();
+
                     arrayMapTimer += (end - start);
 
                     start = System.nanoTime();
-                    randomizedTreeMap.get(s);
+                    if (randomizedTreeMap.get(s) == null) missesRandomized++;
                     end = System.nanoTime();
                     randomizedTimer = (end - start);
                 }
-                writer.writeForQuijote("./QuijoteTimers", "ArrayMap", j, arrayMapTimer);
-                writer.writeForQuijote("./QuijoteTimers", "RandomizedTreeMap", j, randomizedTimer);
+                writer.writeForQuijote("./QuijoteTimers", "ArrayMap", j, arrayMapTimer, missesArrayMap);
+                writer.writeForQuijote("./QuijoteTimers", "RandomizedTreeMap", j, randomizedTimer, missesRandomized);
             }
         } catch (IOException e) {
             e.printStackTrace();

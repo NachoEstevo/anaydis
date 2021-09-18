@@ -51,11 +51,11 @@ public class CsvWriter {
         }
     }
 
-    public void writeForQuijote(String path, String mapType, int size,long time){
+    public void writeForQuijote(String path, String mapType, int size,long time,int misses){
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true));
 
-            bufferedWriter.write(mapType + "," + size + "," + time);
+            bufferedWriter.write(mapType + "," + size + "," + time + "," + misses);
             bufferedWriter.newLine();
             bufferedWriter.close();
         } catch (Exception e) {
