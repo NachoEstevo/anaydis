@@ -2,15 +2,13 @@ package anaydis.search;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Stack;
+import java.util.*;
 
 public class RandomizedTreeMap<K,V> implements Map<K,V>{
     private Node<K,V> head;
     private int size;
     private final Comparator<K> comparator;
+    private ArrayList<K> keys;
 
     public RandomizedTreeMap(Comparator<K> comparator){
        this.comparator = comparator;
@@ -52,7 +50,6 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     @Override
     public V put(@NotNull K key, V value) {
         V previous = get(key);
-
        int random  = (int) (Math.random() * 100);
        if (random < 50){
           head = rootPut(this.head, key, value);
@@ -106,28 +103,15 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
 
     @Override
     public Iterator<K> keys() {
-        Stack<Node<K,V>> stack = new Stack<>();
-
-        return new Iterator<K>() {
-            Node<K, V> aux = head;
-
-            @Override
-            public boolean hasNext() {
-                return !(aux == null);
-            }
-
-            @Override
-            public K next() {
-                if (!hasNext()) throw new NoSuchElementException();
-                while (aux != null) {
-                    stack.push(aux);
-                    aux = aux.getLeft();
-                }
-                Node<K, V> previous = stack.pop();
-                aux = previous.getRight();
-                return previous.getKey();
-            }
-        };
+      keys = new ArrayList<>(size);
+      getInOrder(head);
+      return keys.iterator();
+    }
+    private void getInOrder(Node<K,V> node){
+        if (node == null) return;
+        getInOrder(node.getLeft());
+        keys.add(node.getKey());
+        getInOrder(node.getRight());
     }
     private Node<K,V> find(Node<K,V> node, K key){
         if (node == null) return null;
