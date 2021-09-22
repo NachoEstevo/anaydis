@@ -19,9 +19,10 @@ public class RWayTrieMap<V> implements Map<String,V>{
 
 
     public V put(@NotNull String key, V val) {
+        V previous = get(key);
         head = put(head, key, val, 0);
         size++;
-        return val;
+        return previous;
     }
 
 
