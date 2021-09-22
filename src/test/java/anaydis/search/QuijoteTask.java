@@ -2,7 +2,6 @@ package anaydis.search;
 
 import anaydis.sort.CsvWriter;
 import org.jetbrains.annotations.Nullable;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,9 +31,7 @@ public class QuijoteTask {
                 fillMap(arrayMap, words);
                 fillMap(randomizedTreeMap, words);
 
-
-                //Testing the speed of the algorithms
-
+                //Testing the speed of the algorithms and counting the misses. Misses should match in both ArrayMap and RandomizedTreeMap
                 long arrayMapTimer = 0;
                 long randomizedTimer = 0;
                 long start;

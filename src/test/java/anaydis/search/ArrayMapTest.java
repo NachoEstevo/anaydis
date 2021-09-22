@@ -9,12 +9,12 @@ public class ArrayMapTest {
 
     @Test
     public void arrayMapTest(){
-        Comparator<String> comparator = (integer, t1) -> 0;
+        Comparator<String> comparator = Comparator.naturalOrder();
         ArrayMap<String,Integer> map = new ArrayMap<>(comparator);
 
         Assert.assertEquals(0,map.size());
 
-       /* map.put("hola",13);
+       map.put("hola",13);
         System.out.println(map.indexOf("hola"));
         System.out.println("keys size: " + map.size());
 
@@ -33,6 +33,6 @@ public class ArrayMapTest {
         System.out.println(map.get("quijote"));
 
 
-        Assert.assertEquals((Integer)13,map.get("hola"));*/
+        Assert.assertEquals((Integer)13,map.get("hola"));
     }
 }
