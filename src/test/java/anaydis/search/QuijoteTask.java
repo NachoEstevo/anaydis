@@ -25,34 +25,43 @@ public class QuijoteTask {
             for (int j : nSize) {
                 Map<String, Integer> arrayMap = new ArrayMap<>(comparator);
                 Map<String, Integer> randomizedTreeMap = new ArrayMap<>(comparator);
+                //Added RWayTrieMap
+                RWayTrieMap<Integer> rWayTrieMap = new RWayTrieMap<>();
+
 
                 List<String> words = wordsToList("src/test/resources/books/quijoteClean.txt", j);
                 List<String> reversed = wordsToList("src/test/resources/books/quijoteReversed.txt", j);
                 fillMap(arrayMap, words);
                 fillMap(randomizedTreeMap, words);
+                fillMap(rWayTrieMap,words);
 
                 //Testing the speed of the algorithms and counting the misses. Misses should match in both ArrayMap and RandomizedTreeMap
-                long arrayMapTimer = 0;
-                long randomizedTimer = 0;
+                long timer;
                 long start;
                 long end;
-                int missesArrayMap = 0;
-                int missesRandomized = 0;
+                int misses;
+                ArrayList<Map<String,Integer>> maps = new ArrayList<>(); //Cleaner syntax to avoid repeated code
+                maps.add(arrayMap);
+                maps.add(randomizedTreeMap);
+                maps.add(rWayTrieMap);
 
-                for (String s : reversed) {
-                    start = System.nanoTime();
-                    if (arrayMap.get(s) == null) missesArrayMap++;
-                    end = System.nanoTime();
+                String[] types = new String[] {"ArrayMap","RandomizedTreeMap","RWayTrieMap"};
 
-                    arrayMapTimer += (end - start);
+                int counter = 0;
+                for (Map<String,Integer> map : maps) {
+                    timer = 0;
+                    misses = 0;
+                    for (String s : reversed) {
+                        start = System.nanoTime();
+                        if (map.get(s) == null) misses++;
+                        end = System.nanoTime();
 
-                    start = System.nanoTime();
-                    if (randomizedTreeMap.get(s) == null) missesRandomized++;
-                    end = System.nanoTime();
-                    randomizedTimer = (end - start);
+                        timer += (end - start);
+                    }
+                    writer.writeForQuijote("./QuijoteTimers",types[counter],j, timer, misses);
+                    counter++;
+
                 }
-                writer.writeForQuijote("./QuijoteTimers", "ArrayMap", j, arrayMapTimer, missesArrayMap);
-                writer.writeForQuijote("./QuijoteTimers", "RandomizedTreeMap", j, randomizedTimer, missesRandomized);
             }
         } catch (IOException e) {
             e.printStackTrace();

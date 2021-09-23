@@ -60,7 +60,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
     }
 
 
-    public Node<K,V> put(Node<K,V> node,@NotNull K key, V value) {
+    private Node<K,V> put(Node<K,V> node,@NotNull K key, V value) {
         if (node == null){
             size++;
             return new Node<>(key,value);
@@ -120,4 +120,5 @@ public class RandomizedTreeMap<K,V> implements Map<K,V>{
         else if (cmp <0) return find(node.getLeft(),key);
         else return find(node.getRight(),key);
     }
+
 }
