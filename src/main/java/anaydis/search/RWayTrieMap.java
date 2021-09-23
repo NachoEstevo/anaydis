@@ -2,7 +2,6 @@ package anaydis.search;
 
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +61,7 @@ public class RWayTrieMap<V> implements Map<String,V>{
     public V get(@NotNull String key) {
         TrieNode<V> node = get(head, key, 0);
         if (node == null) return null;
-        return (V) node.getValue();
+        return  node.getValue();
     }
 
     private TrieNode<V> get(TrieNode<V> node, String key, int d){

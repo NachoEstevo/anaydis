@@ -4,7 +4,7 @@ public class Node<K,V> {
     private Node<K,V> left;
     private Node<K,V> right;
     private V value;
-    private K key;
+    private final K key;
 
     public Node(K key, V value){
         this.key = key;
@@ -27,5 +27,4 @@ public class Node<K,V> {
 
     public void setValue(V value) {this.value = value;}
 
-    public void setKey(K key) {this.key = key;}
 }
