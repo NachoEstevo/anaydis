@@ -1,6 +1,5 @@
 package anaydis.search;
 
-
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Iterator;

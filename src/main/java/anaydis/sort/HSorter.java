@@ -15,8 +15,7 @@ public class HSorter extends AbstractSorter
         sort(comparator, list, 1);
     }
 
-    public <T> void sort(Comparator<T> comparator, List<T> list, int h)
-    {
+    public <T> void sort(Comparator<T> comparator, List<T> list, int h){
         for (int i = h; i < list.size() ; i++) {
             T data = list.get(i);
             int j = i;
