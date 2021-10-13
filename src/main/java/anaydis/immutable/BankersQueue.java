@@ -20,7 +20,6 @@ public class BankersQueue<T> implements Queue<T> { //Se manejan 2 listas.
     @Override
     public @NotNull BankersQueue<T> enqueue(@NotNull T value) {return new BankersQueue<>(List.cons(value, in), out);}
 
-
     @Override
     public @NotNull Result<T> dequeue() {
         if (out.isEmpty()){
@@ -31,8 +30,6 @@ public class BankersQueue<T> implements Queue<T> { //Se manejan 2 listas.
     }
 
     @Override
-    public boolean isEmpty() {
-        return in.isEmpty() && out.isEmpty();
-    }
+    public boolean isEmpty() {return in.isEmpty() && out.isEmpty();}
 
 }
