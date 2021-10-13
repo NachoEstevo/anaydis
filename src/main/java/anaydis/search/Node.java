@@ -13,11 +13,11 @@ public class Node<K,V> {
         right = null;
     }
 
-    public Node(K key, V value, Node<K, V> node, Node<K, V> right) {
+    public Node(K key, V value, Node<K,V> left, Node<K,V> right) {
         this.key = key;
         this.value = value;
-
-
+        this.left = left;
+        this.right = right;
     }
 
     public V getValue() {return value;}
