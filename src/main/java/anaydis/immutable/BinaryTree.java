@@ -27,9 +27,7 @@ public class BinaryTree<K, V> implements Map<K, V> {
     }
 
     @Override
-    public int size() {
-        return size;
-    }
+    public int size() {return size;}
 
     @Override
     public boolean containsKey(@NotNull K key) {
@@ -49,10 +47,7 @@ public class BinaryTree<K, V> implements Map<K, V> {
 
     @Nullable
     @Override
-    public V get(@NotNull K key) {
-        return get(key, head);
-
-    }
+    public V get(@NotNull K key) {return get(key, head);}
 
     @Nullable
     private V get(K key, @Nullable Node<K,V> node) {
@@ -86,16 +81,6 @@ public class BinaryTree<K, V> implements Map<K, V> {
             return new Result(new Node<>(node.getKey(), node.getValue(), node.getLeft(), r.node), r.size);
         }
     }
-
-    private class Result{
-        anaydis.search.Node<K,V> node;
-        int size;
-        Result(anaydis.search.Node<K,V> node, int size) {
-            this.node = node;
-            this.size = size;
-        }
-    }
-
     @Override
     public Iterator<K> keys() {
         keys = new ArrayList<>(size);
@@ -108,4 +93,13 @@ public class BinaryTree<K, V> implements Map<K, V> {
         keys.add(node.getKey());
         getInOrder(node.getRight());
     }
+    private class Result{
+        anaydis.search.Node<K,V> node;
+        int size;
+        Result(anaydis.search.Node<K,V> node, int size) {
+            this.node = node;
+            this.size = size;
+        }
+    }
+
 }
