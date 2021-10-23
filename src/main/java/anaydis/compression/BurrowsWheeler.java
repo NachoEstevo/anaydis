@@ -83,7 +83,7 @@ public class BurrowsWheeler implements Compressor{
         return t;
     }
 
-    private int remove(byte c, byte @NotNull [] chars) {
+    private int remove(byte c, byte[] chars) {
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == c){
                 chars[i] = -1;
