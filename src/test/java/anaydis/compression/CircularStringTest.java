@@ -10,8 +10,8 @@ public class CircularStringTest {
 
     @Test
     public void test_iterator(){
-        CircularString circleString = new CircularString("ABRACADABRA".toCharArray());
-        Iterator<Character> iterator = circleString.iterator();
+        CircularString circularString = new CircularString("ABRACADABRA".toCharArray());
+        Iterator<Character> iterator = circularString.iterator();
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()){
             stringBuilder.append(iterator.next());
@@ -33,8 +33,8 @@ public class CircularStringTest {
 
     @Test
     public void test_double_Shift(){
-        CircularString circleString = new CircularString("ABRACADABRA".toCharArray());
-        CircularString shifted = circleString.shift().shift();
+        CircularString circularString = new CircularString("ABRACADABRA".toCharArray());
+        CircularString shifted = circularString.shift().shift();
         Iterator<Character> iterator = shifted.iterator();
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()){
@@ -45,28 +45,28 @@ public class CircularStringTest {
 
     @Test
     public void test_comparator(){
-        CircularString circleString = new CircularString("ABRACADABRA".toCharArray());
-        CircularString shifted = circleString.shift();
+        CircularString circularString = new CircularString("ABRACADABRA".toCharArray());
+        CircularString shifted = circularString.shift();
         /*
         ABRACADABRA
         AABRACADABR
          */
-        assertTrue(circleString.compareTo(shifted) > 0);
+        assertTrue(circularString.compareTo(shifted) > 0);
 
-        circleString = new CircularString("ABRACADABRA".toCharArray());
-        shifted = circleString.shift().shift();
+        circularString = new CircularString("ABRACADABRA".toCharArray());
+        shifted = circularString.shift().shift();
         /*
         ABRACADABRA
         RAABRACADAB
          */
-        assertTrue(circleString.compareTo(shifted) < 0);
+        assertTrue(circularString.compareTo(shifted) < 0);
     }
 
     @Test
     public void test_to_String(){
-        CircularString circleString = new CircularString("ABRACADABRA".toCharArray());
-        CircularString shifted = circleString.shift();
-        assertEquals(circleString.toString(), "ABRACADABRA");
+        CircularString circularString = new CircularString("ABRACADABRA".toCharArray());
+        CircularString shifted = circularString.shift();
+        assertEquals(circularString.toString(), "ABRACADABRA");
         assertEquals(shifted.toString(), "AABRACADABR");
 
     }
