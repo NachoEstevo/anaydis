@@ -37,7 +37,7 @@ public class CircularString implements Comparable<CircularString>{
 
     @NotNull
     Iterator<Character> iterator(){
-        return new Iterator<>() {
+        return new Iterator<Character>() {
             private int index = start;
             private int count = 0;
 
