@@ -170,7 +170,6 @@ public class Huffman implements Compressor {
             symbols.put(buildBits(length, code), symbol);
         }
         return symbols;
-
     }
 
     @NotNull
