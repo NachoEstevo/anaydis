@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MoveToFront implements Compressor{
+public class MoveToFront { //Implements Compressor. Class not Working
     private final int[] _table;
     private int _size;
 
@@ -24,7 +24,7 @@ public class MoveToFront implements Compressor{
         }
     }
 
-    @Override
+
     public void encode(@NotNull InputStream input, @NotNull OutputStream out) throws IOException {
         int c;
         while ((c = input.read()) != -1) {
@@ -33,7 +33,7 @@ public class MoveToFront implements Compressor{
             add(c);
         }
     }
-    @Override
+
     public void decode(@NotNull InputStream input, @NotNull OutputStream out) throws IOException {
         int c;
         while ((c = input.read()) != -1) {
