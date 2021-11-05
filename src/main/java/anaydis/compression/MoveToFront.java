@@ -1,10 +1,12 @@
 package anaydis.compression;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MoveToFront {
+public class MoveToFront implements Compressor{
     private final int[] _table;
     private int _size;
 
@@ -22,7 +24,8 @@ public class MoveToFront {
         }
     }
 
-    public void encode(InputStream input, OutputStream out) throws IOException {
+    @Override
+    public void encode(@NotNull InputStream input, @NotNull OutputStream out) throws IOException {
         int c;
         while ((c = input.read()) != -1) {
             out.write(_table[c]);
@@ -30,19 +33,17 @@ public class MoveToFront {
             add(c);
         }
     }
-
-    public int decode(InputStream input, OutputStream out) throws IOException {
+    @Override
+    public void decode(@NotNull InputStream input, @NotNull OutputStream out) throws IOException {
         int c;
-        int i = 0;
         while ((c = input.read()) != -1) {
-            if (c == 0) {
-                out.write(i);
-                return i;
+            int d = input.read();
+            if (d == -1) {
+                throw new IOException("Unexpected EOF");
             }
-            i = _table[i];
-            out.write(i);
-            add(i);
+            out.write(c);
+            add(d);
         }
-        return i;
     }
+
 }
