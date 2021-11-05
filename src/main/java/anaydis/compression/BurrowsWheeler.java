@@ -30,7 +30,6 @@ public class BurrowsWheeler implements Compressor{
             if (aShifting.getStart() ==  1 ) position = i;
             output.write(aShifting.last());
         }
-
         writeInt(position, output);
         System.out.println();
     }
@@ -71,6 +70,7 @@ public class BurrowsWheeler implements Compressor{
         return chars;
     }
 
+
     private int[] getTVector(byte[] string){
         byte[] sorted = Arrays.copyOf(string, string.length);
         byte[] stringCopy = Arrays.copyOf(string, string.length);
@@ -82,6 +82,7 @@ public class BurrowsWheeler implements Compressor{
         }
         return t;
     }
+
 
     private int remove(byte c, byte[] chars) {
         for (int i = 0; i < chars.length; i++) {
