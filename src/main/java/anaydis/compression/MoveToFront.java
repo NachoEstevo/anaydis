@@ -5,8 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class MoveToFront {
-
-    private int[] _table;
+    private final int[] _table;
     private int _size;
 
     public MoveToFront() {
@@ -23,35 +22,26 @@ public class MoveToFront {
         }
     }
 
-    public void encode(int c, OutputStream out) throws IOException {
-        int i = _table[c];
-        if (i == -1) {
-            throw new RuntimeException("Character not in table");
-        }
-        int j = 0;
-        while (i > 0) {
-            out.write(i & 1);
-            i >>= 1;
-            j++;
-        }
-        for (int k = 0; k < 256; k++) {
-            if (_table[k] == j) {
-                _table[k] = _size++;
-            }
+    public void encode(InputStream input, OutputStream out) throws IOException {
+        int c;
+        while ((c = input.read()) != -1) {
+            out.write(_table[c]);
+            out.write(0);
+            add(c);
         }
     }
 
-    public int decode(InputStream in) throws IOException {
+    public int decode(InputStream input, OutputStream out) throws IOException {
+        int c;
         int i = 0;
-        while (in.read() == 0) {
-            i++;
-        }
-        int j = 0;
-        for (int k = 0; k < 256; k++) {
-            if (_table[k] == i) {
-                _table[k] = j;
-                j++;
+        while ((c = input.read()) != -1) {
+            if (c == 0) {
+                out.write(i);
+                return i;
             }
+            i = _table[i];
+            out.write(i);
+            add(i);
         }
         return i;
     }
